@@ -81,23 +81,27 @@ setInterval(function() {
 
 // reading past events from stated block to latest block
 function getEvents(block) {
-    myContract.getPastEvents('eNewFund', {
+    myContract.getPastEvents('eInvest', {
         filter: {myIndexedParam: [20,23]},
         fromBlock: block,
         toBlock: 'latest'
     }, function(error, events) {
         if (error) {
             console.error(error);
+            // push.note({
+            //     title: "[ERROR] eInvest Event",
+            //     note: String(error)
+            // });
         } else {
             for (var i = 0; i < events.length; i++) { 
-                AddNewFund(events[i]);
+                AddNewInvest(events[i]);
             }
         }
     });
 }
 
 // storing in db
-function AddNewFund(event) {
+function AddNewInvest(event) {
     console.log(event);
     // add the event data to our central database
 }
